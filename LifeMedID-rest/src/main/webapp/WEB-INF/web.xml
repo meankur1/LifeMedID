@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+	         http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+    <display-name>LifeMedId</display-name>
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+    <!--Note Internal Server Error or code issue more likely-->
+    <error-page>
+        <error-code>500</error-code>
+        <location>/WEB-INF/jsps/error.jsp</location>
+    </error-page>
+
+    <!--Note Resource or URL not found-->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/jsps/error.jsp</location>
+    </error-page>
+
+    <!--Note Unauthorized-->
+    <error-page>
+        <error-code>401</error-code>
+        <location>/WEB-INF/jsps/error.jsp</location>
+    </error-page>
+    <!--Note Bad Request-->
+    <error-page>
+        <error-code>408</error-code>
+        <location>/WEB-INF/jsps/error.jsp</location>
+    </error-page>
+
+    <!--TODO use in future if required-->
+    <context-param>
+        <param-name>spring.profiles.default</param-name>
+        <param-value>dev</param-value>
+    </context-param>
+
+    <!-- Note to be set from environment or JNDI -->
+    <!--<context-param>-->
+    <!--<param-name>spring.profiles.active</param-name>-->
+    <!--<param-value>dev</param-value>-->
+    <!--</context-param>-->
+
+    <context-param>
+        <param-name>spring.profiles.active</param-name>
+        <param-value>dev</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            classpath*:/web_config.xml
+            classpath*:/config/db_config.xml
+            classpath*:/config/service_config.xml
+        </param-value>
+    </context-param>
+
+
+    <!--@Note listener classes by Spring to instantiate Spring Application Context -->
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>
+            org.springframework.web.context.request.RequestContextListener
+        </listener-class>
+    </listener>
+
+    <!--@Note Filter class for Authentication -->
+
+    <filter>
+        <filter-name>CORSFilter</filter-name>
+        <filter-class>com.medallies.lifemedid.rest.filter.CORSFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>CORSFilter</filter-name>
+        <servlet-name>Jersey</servlet-name>
+        <!--<url-pattern>/api/*</url-pattern>-->
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+
+    <!--@Note Interceptor class for Authentication todo implement it -->
+
+    <!-- @Note Rest Web Services -->
+
+
+    <servlet>
+        <servlet-name>Jersey</servlet-name>
+        <servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
+        <init-param>
+            <!--<description>Tabs,Users</description>-->
+            <param-name>com.sun.jersey.config.property.packages</param-name>
+            <param-value>com.medallies.lifemedid.rest;</param-value>
+        </init-param>
+        <!-- @Note to remove info logs for grammar issues-->
+        <init-param>
+            <param-name>com.sun.jersey.config.feature.DisableWADL</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+        <async-supported>true</async-supported>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Jersey</servlet-name>
+        <url-pattern>/api/*</url-pattern>
+    </servlet-mapping>
+
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
+    <!--  Note web.xml security config this is the least security, need to switch to spring web security
+          IMP web.xml security security feature
+     -->
+    <!--<security-constraint>-->
+    <!--<display-name>LifeMedId</display-name>-->
+    <!--<web-resource-collection>-->
+    <!--<web-resource-name>LifeMedId</web-resource-name>-->
+    <!--<url-pattern>/*</url-pattern>-->
+    <!--</web-resource-collection>-->
+    <!--<user-data-constraint>-->
+    <!--<transport-guarantee>CONFIDENTIAL</transport-guarantee>-->
+    <!--</user-data-constraint>-->
+    <!--</security-constraint>-->
+
+
+</web-app>
