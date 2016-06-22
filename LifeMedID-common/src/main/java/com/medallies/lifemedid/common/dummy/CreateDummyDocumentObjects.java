@@ -26,7 +26,7 @@ public class CreateDummyDocumentObjects {
         Uploader uploaderDTO = new Uploader();
 
         uploaderDTO.setTransactionId("transaction-test-2");
-        uploaderDTO.setRegisterId("person-test-2");
+        uploaderDTO.setRegistarId("person-test-2");
         uploaderDTO.setOrganizationId("org-test-2");
 
         Applicant applicantDTO = new Applicant( );

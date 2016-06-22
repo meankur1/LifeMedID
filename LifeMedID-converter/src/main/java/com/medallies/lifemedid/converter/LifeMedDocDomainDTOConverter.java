@@ -54,7 +54,7 @@ public class LifeMedDocDomainDTOConverter {
 
         //Note changes according to new structure
         uploaderDTO.setTransactionId(lifeMedDocumentDomain.getTransactionId( ));
-        uploaderDTO.setRegisterId(lifeMedDocumentDomain.getRegisterId());
+        uploaderDTO.setRegistarId(lifeMedDocumentDomain.getRegisterId());
         uploaderDTO.setOrganizationId(lifeMedDocumentDomain.getOrganizationId( ));
 
         try {
@@ -143,8 +143,8 @@ public class LifeMedDocDomainDTOConverter {
             stringBuilder.append(" Uploader TransactionId,");
         }
 
-        if (!StringUtils.isEmpty(uploaderDTO.getRegisterId())) {
-            lifeMedDocumentDomain.setRegisterId(uploaderDTO.getRegisterId());
+        if (!StringUtils.isEmpty(uploaderDTO.getRegistarId())) {
+            lifeMedDocumentDomain.setRegisterId(uploaderDTO.getRegistarId());
         } else {
             flag = true;
             stringBuilder.append(" Uploader PersonId,");
@@ -165,6 +165,7 @@ public class LifeMedDocDomainDTOConverter {
                 applicantDomain = ApplicantDomainDTOConverter.getConvertedDomainFromDTO(applicantDomain,
                         lifeMedDocumentDTO.getApplicant( ));
                 lifeMedDocumentDomain.setApplicant(applicantDomain);
+                lifeMedDocumentDomain.setIdpDocumentList(applicantDomain.getIdpDocuments());
 
                 //Note so alow creation with hibernate need to add these lines
                 applicantDomain.setLifeMedDocument(lifeMedDocumentDomain);

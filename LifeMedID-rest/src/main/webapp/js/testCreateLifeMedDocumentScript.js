@@ -13,11 +13,10 @@ $(document).ready(function () {
     });
 });
 
+
 var ajax = {
 
     startDocumentRequest: function () {
-
-
         // Note Ticket Status Information
         var scope = this,
             data = {

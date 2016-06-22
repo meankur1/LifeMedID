@@ -28,6 +28,7 @@ public class CreateDummyDocumentObjects {
      */
     public static LifeMedDocument createLifeMedDocumentDomain () {
 
+        ArrayList<LifeMedDocument> lifeMedDocumentDomainList = new ArrayList<LifeMedDocument>();
         LifeMedDocument lifeMedDocumentDomain = new LifeMedDocument( );
 
         lifeMedDocumentDomain.setTransactionId("transaction-test-1");
@@ -40,14 +41,17 @@ public class CreateDummyDocumentObjects {
         applicantDomain.setFirstName("firstName12");
         applicantDomain.setLevelOfAssurance("level1");
         applicantDomain.setLastName("lastName12");
+        applicantDomain.setGender("fe");
         applicantDomain.setDateOfBirth("12-01-1989");
-        applicantDomain.setLifeMedDocument(lifeMedDocumentDomain);
+//        applicantDomain.setLifeMedDocument(lifeMedDocumentDomain);
 
         IDPDocument idpDocumentDomain = new IDPDocument( );
 
         idpDocumentDomain.setDocumentType("A1");
         idpDocumentDomain.setDocumentNumber("PP-123-431-9633");
         idpDocumentDomain.setDocumentTitle("Passport");
+        idpDocumentDomain.setGender("Fe");
+        idpDocumentDomain.setDocIssuanceDate("12-01-1989");
 
         idpDocumentDomain.setFirstName("firstName12");
         idpDocumentDomain.setLastName("lastName12");
@@ -59,6 +63,8 @@ public class CreateDummyDocumentObjects {
         idpDocumentDomain.setDocIssuer("ND");
         idpDocumentDomain.setIssuingAuthority("ND");
 
+        lifeMedDocumentDomainList.add(lifeMedDocumentDomain);
+//        idpDocumentDomain.setLifeMedDocumentList(lifeMedDocumentDomainList);
 
         idpDocumentDomain.setApplicant(applicantDomain);
 
@@ -66,7 +72,8 @@ public class CreateDummyDocumentObjects {
         idpDocumentList.add(idpDocumentDomain);
 
         lifeMedDocumentDomain.setApplicant(applicantDomain);
-        applicantDomain.setIdpDocuments(idpDocumentList);
+        lifeMedDocumentDomain.setIdpDocumentList(idpDocumentList);
+//        applicantDomain.setIdpDocuments(idpDocumentList);
 
         return lifeMedDocumentDomain;
 
