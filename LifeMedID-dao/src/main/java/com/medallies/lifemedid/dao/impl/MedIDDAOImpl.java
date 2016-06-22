@@ -3,6 +3,7 @@ package com.medallies.lifemedid.dao.impl;
 import com.medallies.lifemedid.constants.DAOConstants;
 import com.medallies.lifemedid.dao.BasicDAO;
 import com.medallies.lifemedid.dao.MedIDDAO;
+import com.medallies.lifemedid.domain.IDPDocument;
 import com.medallies.lifemedid.domain.LifeMedDocument;
 import com.medallies.lifemedid.exception.response.ErrorContainer;
 import com.medallies.lifemedid.response.DAOResponse;
@@ -48,8 +49,26 @@ public class MedIDDAOImpl extends BasicDAO implements MedIDDAO {
         ErrorContainer errorContainer = new ErrorContainer( );
 
         try {
+
+
+
+
             this.openDBTransaction( );
-            session.save(lifeMedDocument);
+//            for (IDPDocument idpDocument : lifeMedDocument.getIdpDocumentList( )) {
+//                session.saveOrUpdate(idpDocument);
+//            }
+            session.saveOrUpdate(lifeMedDocument.getApplicant());
+//            session.saveOrUpdate(lifeMedDocument);
+            this.closeDBTransaction( );
+
+            this.openDBTransaction( );
+
+//            session.saveOrUpdate(lifeMedDocument.getApplicant( ));
+//            for (IDPDocument idpDocument: lifeMedDocument.getIdpDocumentList()) {
+//                idpDocument.setApplicant(lifeMedDocument.getApplicant());
+//                session.saveOrUpdate(lifeMedDocument);
+//                session.saveOrUpdate(idpDocument);
+//            }
             this.closeDBTransaction( );
             lifeMedDocumentDAOResponse.setCount(DAOConstants.ONE);
 

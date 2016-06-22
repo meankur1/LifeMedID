@@ -71,13 +71,13 @@ public class Applicant {
     /**
      * The Life med document.
      */
-    @OneToOne(mappedBy = "applicant", cascade = { CascadeType.REFRESH, CascadeType.PERSIST })
+    @OneToOne(mappedBy = "applicant", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     private LifeMedDocument lifeMedDocument;
 
     /**
      * The Idp documents.
      */
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "applicant")
+    @OneToMany(cascade =  {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "applicant")
     private List<IDPDocument> idpDocuments;
 
     /**

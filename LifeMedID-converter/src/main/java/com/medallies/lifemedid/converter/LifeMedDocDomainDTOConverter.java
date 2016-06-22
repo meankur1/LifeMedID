@@ -2,6 +2,8 @@ package com.medallies.lifemedid.converter;
 
 import com.medallies.lifemedid.constants.DAOConstants;
 import com.medallies.lifemedid.domain.Applicant;
+import com.medallies.lifemedid.domain.IDPDocument;
+import com.medallies.lifemedid.domain.TransactionDocs;
 import com.medallies.lifemedid.dto.LifeMedDocument;
 import com.medallies.lifemedid.dto.Uploader;
 import com.medallies.lifemedid.exception.IllegalArgumentValueException;
@@ -50,11 +52,11 @@ public class LifeMedDocDomainDTOConverter {
             logger.warn(" Creating lifeMedDocumentDTO, received null object");
         }
 
-        Uploader uploaderDTO = new Uploader();
+        Uploader uploaderDTO = new Uploader( );
 
         //Note changes according to new structure
         uploaderDTO.setTransactionId(lifeMedDocumentDomain.getTransactionId( ));
-        uploaderDTO.setRegistarId(lifeMedDocumentDomain.getRegisterId());
+        uploaderDTO.setRegistarId(lifeMedDocumentDomain.getRegisterId( ));
         uploaderDTO.setOrganizationId(lifeMedDocumentDomain.getOrganizationId( ));
 
         try {
@@ -129,9 +131,9 @@ public class LifeMedDocDomainDTOConverter {
         boolean flag = false;
         StringBuilder stringBuilder = new StringBuilder(" Value must not be null for ");
 
-        Uploader uploaderDTO = lifeMedDocumentDTO.getUploader();
+        Uploader uploaderDTO = lifeMedDocumentDTO.getUploader( );
 
-        if(uploaderDTO == null) {
+        if (uploaderDTO == null) {
             String message = "Parameter uploaderDTO is required for conversion";
             throw new NullPointerException(message);
         }
@@ -143,8 +145,8 @@ public class LifeMedDocDomainDTOConverter {
             stringBuilder.append(" Uploader TransactionId,");
         }
 
-        if (!StringUtils.isEmpty(uploaderDTO.getRegistarId())) {
-            lifeMedDocumentDomain.setRegisterId(uploaderDTO.getRegistarId());
+        if (!StringUtils.isEmpty(uploaderDTO.getRegistarId( ))) {
+            lifeMedDocumentDomain.setRegisterId(uploaderDTO.getRegistarId( ));
         } else {
             flag = true;
             stringBuilder.append(" Uploader PersonId,");
@@ -165,7 +167,10 @@ public class LifeMedDocDomainDTOConverter {
                 applicantDomain = ApplicantDomainDTOConverter.getConvertedDomainFromDTO(applicantDomain,
                         lifeMedDocumentDTO.getApplicant( ));
                 lifeMedDocumentDomain.setApplicant(applicantDomain);
-                lifeMedDocumentDomain.setIdpDocumentList(applicantDomain.getIdpDocuments());
+                lifeMedDocumentDomain.setTransactionDocsList(getTransactionDocsList(lifeMedDocumentDomain,
+                        applicantDomain.getIdpDocuments(
+
+                )));
 
                 //Note so alow creation with hibernate need to add these lines
                 applicantDomain.setLifeMedDocument(lifeMedDocumentDomain);
@@ -191,6 +196,20 @@ public class LifeMedDocDomainDTOConverter {
 
         logger.info(stringBuilder.toString( ));
         return lifeMedDocumentDomain;
+    }
+
+    private static List<TransactionDocs> getTransactionDocsList (com.medallies.lifemedid.domain.LifeMedDocument
+                                                                         lifeMedDocumentDomain, List<IDPDocument>
+            idpDocumentDomainList) {
+        List<TransactionDocs> transactionDocsList = new ArrayList<TransactionDocs>( );
+        for (IDPDocument idpDocumentDomain : idpDocumentDomainList) {
+            TransactionDocs transactionDocs = new TransactionDocs( );
+            transactionDocs.setLifeMedDocument(lifeMedDocumentDomain);
+            transactionDocs.setIdpDocument(idpDocumentDomain);
+
+            transactionDocsList.add(transactionDocs);
+        }
+        return transactionDocsList;
     }
 
     /**

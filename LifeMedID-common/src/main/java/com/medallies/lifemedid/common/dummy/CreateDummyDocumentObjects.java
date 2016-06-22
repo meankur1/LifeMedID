@@ -33,6 +33,7 @@ public class CreateDummyDocumentObjects {
         applicantDTO.setId("ID12");
         applicantDTO.setFirstName("firstName12");
         applicantDTO.setLastName("lastName12");
+        applicantDTO.setGender("FE");
         applicantDTO.setLevelOfAssurance("level2");
         applicantDTO.setDateOfBirth("1989-11-12");
 
@@ -47,7 +48,9 @@ public class CreateDummyDocumentObjects {
         idpDocumentDTO.setMiddleName("firstName12");
         idpDocumentDTO.setDateOfBirth("1989-03-12");
         idpDocumentDTO.setDocExpirationDate("2019-02-12");
+        idpDocumentDTO.setDocIssuanceDate("2015-02-12");
         idpDocumentDTO.setDocIssuer("MN");
+        idpDocumentDTO.setGender("FE");
         idpDocumentDTO.setIssuingAuthority("MN");
 
         List<IDPDocument> idpDocumentList = new ArrayList<IDPDocument>( );

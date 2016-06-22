@@ -3,6 +3,7 @@ package com.medallies.lifemedid.dao;
 import com.medallies.lifemedid.domain.Applicant;
 import com.medallies.lifemedid.domain.IDPDocument;
 import com.medallies.lifemedid.domain.LifeMedDocument;
+import com.medallies.lifemedid.domain.TransactionDocs;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,7 +44,7 @@ public class CreateDummyDocumentObjects {
         applicantDomain.setLastName("lastName12");
         applicantDomain.setGender("fe");
         applicantDomain.setDateOfBirth("12-01-1989");
-//        applicantDomain.setLifeMedDocument(lifeMedDocumentDomain);
+        applicantDomain.setLifeMedDocument(lifeMedDocumentDomain);
 
         IDPDocument idpDocumentDomain = new IDPDocument( );
 
@@ -63,7 +64,7 @@ public class CreateDummyDocumentObjects {
         idpDocumentDomain.setDocIssuer("ND");
         idpDocumentDomain.setIssuingAuthority("ND");
 
-        lifeMedDocumentDomainList.add(lifeMedDocumentDomain);
+//        lifeMedDocumentDomainList.add(lifeMedDocumentDomain);
 //        idpDocumentDomain.setLifeMedDocumentList(lifeMedDocumentDomainList);
 
         idpDocumentDomain.setApplicant(applicantDomain);
@@ -72,8 +73,16 @@ public class CreateDummyDocumentObjects {
         idpDocumentList.add(idpDocumentDomain);
 
         lifeMedDocumentDomain.setApplicant(applicantDomain);
-        lifeMedDocumentDomain.setIdpDocumentList(idpDocumentList);
-//        applicantDomain.setIdpDocuments(idpDocumentList);
+
+        TransactionDocs transactionDocs = new TransactionDocs();
+        transactionDocs.setIdpDocument(idpDocumentDomain);
+        transactionDocs.setLifeMedDocument(lifeMedDocumentDomain);
+
+        List<TransactionDocs> transactionDocList = new ArrayList<TransactionDocs>();
+
+        lifeMedDocumentDomain.setTransactionDocsList(transactionDocList);
+        applicantDomain.setIdpDocuments(idpDocumentList);
+        lifeMedDocumentDomain.setTransactionDocsList(transactionDocList);
 
         return lifeMedDocumentDomain;
 

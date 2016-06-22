@@ -53,14 +53,13 @@ public class LifeMedDocument {
     /**
      * The Applicant.
      */
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne( cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "applicant_id", referencedColumnName = "id")
     private Applicant applicant;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(name = "transaction_docs",joinColumns = {@JoinColumn(name = "transaction_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "idpdoc_id", referencedColumnName = "id")})
-    private List<IDPDocument> idpDocumentList;
+    @OneToMany(mappedBy = "lifeMedDocument", cascade = {CascadeType.ALL})
+
+    private List<TransactionDocs> transactionDocsList;
 
     /**
      * Gets lifemed id.
@@ -121,7 +120,7 @@ public class LifeMedDocument {
      *
      * @return the person id
      */
-    public String getRegisterId() {
+    public String getRegisterId () {
         return registerId;
     }
 
@@ -130,7 +129,7 @@ public class LifeMedDocument {
      *
      * @param personId the person id
      */
-    public void setRegisterId(String personId) {
+    public void setRegisterId (String personId) {
         this.registerId = personId;
     }
 
@@ -188,12 +187,12 @@ public class LifeMedDocument {
         this.applicant = applicant;
     }
 
-    public List<IDPDocument> getIdpDocumentList() {
-        return idpDocumentList;
+    public List<TransactionDocs> getTransactionDocsList () {
+        return transactionDocsList;
     }
 
-    public void setIdpDocumentList(List<IDPDocument> idpDocumentList) {
-        this.idpDocumentList = idpDocumentList;
+    public void setTransactionDocsList (List<TransactionDocs> transactionDocsList) {
+        this.transactionDocsList = transactionDocsList;
     }
 
     /**
@@ -213,7 +212,7 @@ public class LifeMedDocument {
             return false;
         if (!getTransactionId( ).equals(that.getTransactionId( ))) return false;
         if (!getOrganizationId( ).equals(that.getOrganizationId( ))) return false;
-        if (!getRegisterId().equals(that.getRegisterId())) return false;
+        if (!getRegisterId( ).equals(that.getRegisterId( ))) return false;
         return !( getTimeStamp( ) != null ? !getTimeStamp( ).equals(that.getTimeStamp( )) : that.getTimeStamp( ) !=
                 null );
 
@@ -229,7 +228,7 @@ public class LifeMedDocument {
         int result = getLifemedId( ) != null ? getLifemedId( ).hashCode( ) : 0;
         result = 31 * result + getTransactionId( ).hashCode( );
         result = 31 * result + getOrganizationId( ).hashCode( );
-        result = 31 * result + getRegisterId().hashCode( );
+        result = 31 * result + getRegisterId( ).hashCode( );
         result = 31 * result + ( getTimeStamp( ) != null ? getTimeStamp( ).hashCode( ) : 0 );
         return result;
     }

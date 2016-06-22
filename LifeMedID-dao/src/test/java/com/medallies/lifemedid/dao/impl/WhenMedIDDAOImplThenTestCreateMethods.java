@@ -73,7 +73,7 @@ public class WhenMedIDDAOImplThenTestCreateMethods {
      */
     @SuppressWarnings("unchecked")
     @Test
-    @Rollback
+    @Rollback(value = false)
     public void testSaveDataIntoDB () throws Exception {
 
         String location = this.getClass( ).getCanonicalName( ) + "#testSaveDataIntoDB()";
