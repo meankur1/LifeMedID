@@ -29,13 +29,13 @@ public class CreateDummyDocumentObjects {
      */
     public static LifeMedDocument createLifeMedDocumentDomain () {
 
-        ArrayList<LifeMedDocument> lifeMedDocumentDomainList = new ArrayList<LifeMedDocument>();
+        ArrayList<LifeMedDocument> lifeMedDocumentDomainList = new ArrayList<LifeMedDocument>( );
         LifeMedDocument lifeMedDocumentDomain = new LifeMedDocument( );
 
         lifeMedDocumentDomain.setTransactionId("transaction-test-1");
         lifeMedDocumentDomain.setRegisterId("person-test-1");
         lifeMedDocumentDomain.setOrganizationId("org-test-1");
-        lifeMedDocumentDomain.setTimeStamp(new Date());
+        lifeMedDocumentDomain.setTimeStamp(new Date( ));
 
         Applicant applicantDomain = new Applicant( );
         applicantDomain.setId("ID12");
@@ -74,11 +74,12 @@ public class CreateDummyDocumentObjects {
 
         lifeMedDocumentDomain.setApplicant(applicantDomain);
 
-        TransactionDocs transactionDocs = new TransactionDocs();
+        TransactionDocs transactionDocs = new TransactionDocs( );
         transactionDocs.setIdpDocument(idpDocumentDomain);
         transactionDocs.setLifeMedDocument(lifeMedDocumentDomain);
 
-        List<TransactionDocs> transactionDocList = new ArrayList<TransactionDocs>();
+        List<TransactionDocs> transactionDocList = new ArrayList<TransactionDocs>( );
+        transactionDocList.add(transactionDocs);
 
         lifeMedDocumentDomain.setTransactionDocsList(transactionDocList);
         applicantDomain.setIdpDocuments(idpDocumentList);

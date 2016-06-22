@@ -5,6 +5,7 @@ import com.medallies.lifemedid.dao.BasicDAO;
 import com.medallies.lifemedid.dao.MedIDDAO;
 import com.medallies.lifemedid.domain.IDPDocument;
 import com.medallies.lifemedid.domain.LifeMedDocument;
+import com.medallies.lifemedid.domain.TransactionDocs;
 import com.medallies.lifemedid.exception.response.ErrorContainer;
 import com.medallies.lifemedid.response.DAOResponse;
 import org.hibernate.HibernateException;
@@ -49,25 +50,24 @@ public class MedIDDAOImpl extends BasicDAO implements MedIDDAO {
         ErrorContainer errorContainer = new ErrorContainer( );
 
         try {
-
-
-
-
             this.openDBTransaction( );
 //            for (IDPDocument idpDocument : lifeMedDocument.getIdpDocumentList( )) {
 //                session.saveOrUpdate(idpDocument);
 //            }
-            session.saveOrUpdate(lifeMedDocument.getApplicant());
+            session.saveOrUpdate(lifeMedDocument);
 //            session.saveOrUpdate(lifeMedDocument);
             this.closeDBTransaction( );
 
-            this.openDBTransaction( );
+//            this.openDBTransaction( );
 
 //            session.saveOrUpdate(lifeMedDocument.getApplicant( ));
 //            for (IDPDocument idpDocument: lifeMedDocument.getIdpDocumentList()) {
 //                idpDocument.setApplicant(lifeMedDocument.getApplicant());
 //                session.saveOrUpdate(lifeMedDocument);
 //                session.saveOrUpdate(idpDocument);
+//            }
+//            for(TransactionDocs transactionDocs: lifeMedDocument.getTransactionDocsList()) {
+//                session.save(transactionDocs);
 //            }
             this.closeDBTransaction( );
             lifeMedDocumentDAOResponse.setCount(DAOConstants.ONE);

@@ -1,6 +1,7 @@
 package com.medallies.lifemedid.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "lifemedid_transactions")
-public class LifeMedDocument {
+public class LifeMedDocument implements Serializable{
 
     /**
      * The Lifemed id.
@@ -53,12 +54,11 @@ public class LifeMedDocument {
     /**
      * The Applicant.
      */
-    @OneToOne( cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToOne( cascade = {CascadeType.ALL})
     @JoinColumn(name = "applicant_id", referencedColumnName = "id")
     private Applicant applicant;
 
     @OneToMany(mappedBy = "lifeMedDocument", cascade = {CascadeType.ALL})
-
     private List<TransactionDocs> transactionDocsList;
 
     /**

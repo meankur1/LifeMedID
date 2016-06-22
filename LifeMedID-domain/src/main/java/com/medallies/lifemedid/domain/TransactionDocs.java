@@ -1,11 +1,12 @@
 package com.medallies.lifemedid.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 
 @Entity
 @Table(name = "transaction_docs", schema = "lifemedid")
-public class TransactionDocs {
+public class TransactionDocs implements Serializable {
 
     @Id
     @Column(name = "id")

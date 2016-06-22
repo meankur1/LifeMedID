@@ -1,6 +1,7 @@
 package com.medallies.lifemedid.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "iDPDocuments")
-public class IDPDocument {
+public class IDPDocument implements Serializable {
 
     /**
      * The Idp document id.

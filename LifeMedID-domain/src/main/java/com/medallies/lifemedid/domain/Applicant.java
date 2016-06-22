@@ -1,6 +1,7 @@
 package com.medallies.lifemedid.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "applicants")
-public class Applicant {
+public class Applicant implements Serializable {
 
     /**
      * The Id.
@@ -77,7 +78,7 @@ public class Applicant {
     /**
      * The Idp documents.
      */
-    @OneToMany(cascade =  {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "applicant")
+    @OneToMany(cascade =  {CascadeType.ALL}, mappedBy = "applicant")
     private List<IDPDocument> idpDocuments;
 
     /**
