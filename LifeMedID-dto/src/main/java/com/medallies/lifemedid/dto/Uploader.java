@@ -9,7 +9,7 @@ public class Uploader {
 
     private String transactionId;
 
-    private String registerId;
+    private String registarId;
 
     private String organizationId;
 
@@ -22,13 +22,13 @@ public class Uploader {
         this.transactionId = transactionId;
     }
 
-    @XmlElement(name = "registerID")
-    public String getRegisterId() {
-        return registerId;
+    @XmlElement(name = "registarID")
+    public String getRegistarId () {
+        return registarId;
     }
 
-    public void setRegisterId(String registerId) {
-        this.registerId = registerId;
+    public void setRegistarId (String registarId) {
+        this.registarId = registarId;
     }
 
     @XmlElement(name = "orgID")
@@ -45,7 +45,7 @@ public class Uploader {
     public String toString () {
         return "Uploader{" +
                 "transactionId='" + transactionId + '\'' +
-                ", registerId='" + registerId + '\'' +
+                ", registarId='" + registarId + '\'' +
                 ", organizationId='" + organizationId + '\'' +
                 '}';
     }
