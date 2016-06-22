@@ -42,12 +42,13 @@ public class ApplicantDomainDTOConverter {
         }
 
         applicantDTO.setLevelOfAssurance(applicantDomain.getLevelOfAssurance( ));
-        applicantDTO.setSuffix(applicantDomain.getSuffix( ));
-        applicantDTO.setDateOfBirth(applicantDomain.getDateOfBirth( ));
-        applicantDTO.setFirstName(applicantDomain.getFirstName( ));
-        applicantDTO.setMiddleName(applicantDomain.getMiddleName( ));
-        applicantDTO.setLastName(applicantDomain.getLastName( ));
-        applicantDTO.setId(applicantDomain.getId( ));
+        applicantDTO.setSuffix(applicantDomain.getSuffix());
+        applicantDTO.setDateOfBirth(applicantDomain.getDateOfBirth());
+        applicantDTO.setFirstName(applicantDomain.getFirstName());
+        applicantDTO.setMiddleName(applicantDomain.getMiddleName());
+        applicantDTO.setLastName(applicantDomain.getLastName());
+        applicantDTO.setId(applicantDomain.getId());
+        applicantDTO.setGender(applicantDomain.getGender());
 
         return applicantDTO;
     }
@@ -102,31 +103,38 @@ public class ApplicantDomainDTOConverter {
             applicantDomain.setSuffix("");
         }
 
-        if (!StringUtils.isEmpty(applicantDTO.getMiddleName( ))) {
-            applicantDomain.setMiddleName(applicantDTO.getMiddleName( ));
+        if (!StringUtils.isEmpty(applicantDTO.getMiddleName())) {
+            applicantDomain.setMiddleName(applicantDTO.getMiddleName());
         } else {
             applicantDomain.setMiddleName("");
         }
 
-        if (!StringUtils.isEmpty(applicantDTO.getFirstName( ))) {
-            applicantDomain.setFirstName(applicantDTO.getFirstName( ));
+        if (!StringUtils.isEmpty(applicantDTO.getFirstName())) {
+            applicantDomain.setFirstName(applicantDTO.getFirstName());
         } else {
             flag = true;
             stringBuilder.append(" Applicant First Name,");
         }
 
-        if (!StringUtils.isEmpty(applicantDTO.getLastName( ))) {
-            applicantDomain.setLastName(applicantDTO.getLastName( ));
+        if (!StringUtils.isEmpty(applicantDTO.getLastName())) {
+            applicantDomain.setLastName(applicantDTO.getLastName());
         } else {
             flag = true;
             stringBuilder.append(" Applicant Last Name,");
         }
 
-        if (!StringUtils.isEmpty(applicantDTO.getDateOfBirth( ))) {
-            applicantDomain.setDateOfBirth(applicantDTO.getDateOfBirth( ));
+        if (!StringUtils.isEmpty(applicantDTO.getDateOfBirth())) {
+            applicantDomain.setDateOfBirth(applicantDTO.getDateOfBirth());
         } else {
             flag = true;
             stringBuilder.append(" Applicant Date of Birth,");
+        }
+
+        if (!StringUtils.isEmpty(applicantDTO.getGender())) {
+            applicantDomain.setGender(applicantDTO.getGender( ));
+        } else {
+            flag = true;
+            stringBuilder.append(" Applicant Gender,");
         }
 
         if (!StringUtils.isEmpty(applicantDTO.getLevelOfAssurance( ))) {

@@ -15,47 +15,19 @@ $(document).ready(function () {
 
 var ajax = {
 
-    startLoginRequest: function () {
-
-        // Note Login
-        var scope = this,
-            data = {username: "mytvs", password: "12345678"},
-            typeofRequest = "POST",
-            url = "login/doLogin";
-        url = baseURL + url;
-        console.log("Url is " + url);
-        ajax.customAjaxRequest(url, data, typeofRequest, scope);
-    },
-
     startDocumentRequest: function () {
 
-        //var data = {
-        //    firstName: "Frederick",
-        //        licenseNumber: "FF-236-887-9906",
-        //        lastName: "Flintstone",
-        //        dateOfBirth: "1978-11-22",
-        //        issuingState: "NY",
-        //        licenseExpirationDate: "2018-04-13",
-        //        middleName: "J",
-        //        documentType: 'A1',
-        //        applicant: {
-        //        firstName: "Freddy",
-        //            lastName: "Flintstone",
-        //            dateOfBirth: "1978-11-22",
-        //            id: "12345"
-        //    }
-        //}
 
         // Note Ticket Status Information
         var scope = this,
             data = {
                 uploader: {
                     transactionID: "b3a59d45-6fbb-1014-a7a4-dfe5ca3b7ee6",
-                    personID: "v2015",
+                    registarID: "v2015",
                     orgID: "22042-3307"
                 },
                 IDPdocs: [{
-                    suffix:"Mr",
+                    suffix: "Mr",
                     firstName: "Frederick",
                     licenseNumber: "FF-236-887-9906",
                     lastName: "Flintstone",
@@ -63,6 +35,8 @@ var ajax = {
                     issuingAuthority: "IL",
                     docIssuer: 'IL',
                     docExpirationDate: "2018-04-13",
+                    docIssuanceDate: "2016-04-13",
+                    gender: "F",
                     middleName: "J",
                     docType: 'A1',
                     docTitle: 'Passport',
@@ -70,13 +44,14 @@ var ajax = {
 
                 }],
                 applicant: {
-                    suffix:"Mr",
+                    suffix: "Mr",
                     firstName: "Freddy",
                     lastName: "Flintstone",
                     dateOfBirth: "1978-11-22",
                     id: "12345",
-                    middleName:"J",
-                    levelOfAssurance:"level3"
+                    middleName: "J",
+                    gender: "F",
+                    levelOfAssurance: "level3"
                 }
             },
             typeofRequest = "POST",

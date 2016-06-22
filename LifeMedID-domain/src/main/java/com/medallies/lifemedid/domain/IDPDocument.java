@@ -2,6 +2,7 @@ package com.medallies.lifemedid.domain;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * The type Idp document.
@@ -14,7 +15,7 @@ public class IDPDocument {
      * The Idp document id.
      */
     @Id
-    @Column(name = "idp_document_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.TABLE)
     private long idpDocumentId;
 
@@ -48,6 +49,8 @@ public class IDPDocument {
     @Column(name = "date_of_birth")
     private String dateOfBirth;
 
+    @Column(name = "gender")
+    private String gender;
     /**
      * The Issuing authority.
      */
@@ -59,6 +62,9 @@ public class IDPDocument {
      */
     @Column(name = "document_issuer")
     private String docIssuer;
+
+    @Column(name = "document_issuance_date")
+    private String docIssuanceDate;
 
     /**
      * The License expiration date.
@@ -81,16 +87,21 @@ public class IDPDocument {
     /**
      * The Document number.
      */
-    @Column(name = "document_number")
+    @Column(name = "document_id")
     private String documentNumber;
 
 
     /**
      * The Applicant.
      */
-    @ManyToOne(cascade = { CascadeType.REFRESH, CascadeType.PERSIST })
-    @JoinColumn(name = "applicant_id", referencedColumnName = "applicant_id")
+    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.PERSIST})
+    @JoinColumn(name = "application_id", referencedColumnName = "id")
     private Applicant applicant;
+
+    @ManyToMany(mappedBy = "idpDocumentList", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+//    @JoinTable(name = "transaction_docs",joinColumns = {@JoinColumn(name = "idpdoc_id", referencedColumnName = "id")},
+//            inverseJoinColumns = {@JoinColumn(name = "transaction_id", referencedColumnName = "transaction_id")})
+    private List<LifeMedDocument> lifeMedDocumentList;
 
     /**
      * The Created date.
@@ -111,7 +122,7 @@ public class IDPDocument {
      *
      * @return the idp document id
      */
-    public long getIdpDocumentId () {
+    public long getIdpDocumentId() {
         return idpDocumentId;
     }
 
@@ -120,7 +131,7 @@ public class IDPDocument {
      *
      * @param idpDocumentId the idp document id
      */
-    public void setIdpDocumentId (long idpDocumentId) {
+    public void setIdpDocumentId(long idpDocumentId) {
         this.idpDocumentId = idpDocumentId;
     }
 
@@ -129,7 +140,7 @@ public class IDPDocument {
      *
      * @return the suffix
      */
-    public String getSuffix () {
+    public String getSuffix() {
         return suffix;
     }
 
@@ -138,7 +149,7 @@ public class IDPDocument {
      *
      * @param suffix the suffix
      */
-    public void setSuffix (String suffix) {
+    public void setSuffix(String suffix) {
         this.suffix = suffix;
     }
 
@@ -147,7 +158,7 @@ public class IDPDocument {
      *
      * @return the first name
      */
-    public String getFirstName () {
+    public String getFirstName() {
         return firstName;
     }
 
@@ -156,7 +167,7 @@ public class IDPDocument {
      *
      * @param firstName the first name
      */
-    public void setFirstName (String firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
@@ -165,7 +176,7 @@ public class IDPDocument {
      *
      * @return the last name
      */
-    public String getLastName () {
+    public String getLastName() {
         return lastName;
     }
 
@@ -174,7 +185,7 @@ public class IDPDocument {
      *
      * @param lastName the last name
      */
-    public void setLastName (String lastName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
@@ -183,7 +194,7 @@ public class IDPDocument {
      *
      * @return the middle name
      */
-    public String getMiddleName () {
+    public String getMiddleName() {
         return middleName;
     }
 
@@ -192,7 +203,7 @@ public class IDPDocument {
      *
      * @param middleName the middle name
      */
-    public void setMiddleName (String middleName) {
+    public void setMiddleName(String middleName) {
         this.middleName = middleName;
     }
 
@@ -201,7 +212,7 @@ public class IDPDocument {
      *
      * @return the date of birth
      */
-    public String getDateOfBirth () {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
@@ -210,8 +221,16 @@ public class IDPDocument {
      *
      * @param dateOfBirth the date of birth
      */
-    public void setDateOfBirth (String dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     /**
@@ -219,7 +238,7 @@ public class IDPDocument {
      *
      * @return the issuing authority
      */
-    public String getIssuingAuthority () {
+    public String getIssuingAuthority() {
         return issuingAuthority;
     }
 
@@ -228,7 +247,7 @@ public class IDPDocument {
      *
      * @param issuingAuthority the issuing authority
      */
-    public void setIssuingAuthority (String issuingAuthority) {
+    public void setIssuingAuthority(String issuingAuthority) {
         this.issuingAuthority = issuingAuthority;
     }
 
@@ -237,7 +256,7 @@ public class IDPDocument {
      *
      * @return the issuing state
      */
-    public String getDocIssuer () {
+    public String getDocIssuer() {
         return docIssuer;
     }
 
@@ -246,8 +265,16 @@ public class IDPDocument {
      *
      * @param issuingState the issuing state
      */
-    public void setDocIssuer (String issuingState) {
+    public void setDocIssuer(String issuingState) {
         this.docIssuer = issuingState;
+    }
+
+    public String getDocIssuanceDate() {
+        return docIssuanceDate;
+    }
+
+    public void setDocIssuanceDate(String docIssuanceDate) {
+        this.docIssuanceDate = docIssuanceDate;
     }
 
     /**
@@ -255,7 +282,7 @@ public class IDPDocument {
      *
      * @return the license expiration date
      */
-    public String getDocExpirationDate () {
+    public String getDocExpirationDate() {
         return docExpirationDate;
     }
 
@@ -264,7 +291,7 @@ public class IDPDocument {
      *
      * @param licenseExpirationDate the license expiration date
      */
-    public void setDocExpirationDate (String licenseExpirationDate) {
+    public void setDocExpirationDate(String licenseExpirationDate) {
         this.docExpirationDate = licenseExpirationDate;
     }
 
@@ -273,7 +300,7 @@ public class IDPDocument {
      *
      * @return the document type
      */
-    public String getDocumentType () {
+    public String getDocumentType() {
         return documentType;
     }
 
@@ -282,7 +309,7 @@ public class IDPDocument {
      *
      * @param documentType the document type
      */
-    public void setDocumentType (String documentType) {
+    public void setDocumentType(String documentType) {
         this.documentType = documentType;
     }
 
@@ -291,7 +318,7 @@ public class IDPDocument {
      *
      * @return the document title
      */
-    public String getDocumentTitle () {
+    public String getDocumentTitle() {
         return documentTitle;
     }
 
@@ -300,7 +327,7 @@ public class IDPDocument {
      *
      * @param documentTitle the document title
      */
-    public void setDocumentTitle (String documentTitle) {
+    public void setDocumentTitle(String documentTitle) {
         this.documentTitle = documentTitle;
     }
 
@@ -309,7 +336,7 @@ public class IDPDocument {
      *
      * @return the document number
      */
-    public String getDocumentNumber () {
+    public String getDocumentNumber() {
         return documentNumber;
     }
 
@@ -318,7 +345,7 @@ public class IDPDocument {
      *
      * @param documentNumber the document number
      */
-    public void setDocumentNumber (String documentNumber) {
+    public void setDocumentNumber(String documentNumber) {
         this.documentNumber = documentNumber;
     }
 
@@ -327,7 +354,7 @@ public class IDPDocument {
      *
      * @return the applicant
      */
-    public Applicant getApplicant () {
+    public Applicant getApplicant() {
         return applicant;
     }
 
@@ -336,8 +363,16 @@ public class IDPDocument {
      *
      * @param applicant the applicant
      */
-    public void setApplicant (Applicant applicant) {
+    public void setApplicant(Applicant applicant) {
         this.applicant = applicant;
+    }
+
+    public List<LifeMedDocument> getLifeMedDocumentList() {
+        return lifeMedDocumentList;
+    }
+
+    public void setLifeMedDocumentList(List<LifeMedDocument> lifeMedDocumentList) {
+        this.lifeMedDocumentList = lifeMedDocumentList;
     }
 
     /**
@@ -345,7 +380,7 @@ public class IDPDocument {
      *
      * @return the created date
      */
-    public Date getCreatedDate () {
+    public Date getCreatedDate() {
         return createdDate;
     }
 
@@ -354,7 +389,7 @@ public class IDPDocument {
      *
      * @param createdDate the created date
      */
-    public void setCreatedDate (Date createdDate) {
+    public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
     }
 
@@ -363,7 +398,7 @@ public class IDPDocument {
      *
      * @return the updated date
      */
-    public Date getUpdatedDate () {
+    public Date getUpdatedDate() {
         return updatedDate;
     }
 
@@ -372,7 +407,7 @@ public class IDPDocument {
      *
      * @param updatedDate the updated date
      */
-    public void setUpdatedDate (Date updatedDate) {
+    public void setUpdatedDate(Date updatedDate) {
         this.updatedDate = updatedDate;
     }
 
@@ -383,22 +418,22 @@ public class IDPDocument {
      * @return the boolean
      */
     @Override
-    public boolean equals (Object o) {
+    public boolean equals(Object o) {
         if (this == o) return true;
-        if (!( o instanceof IDPDocument )) return false;
+        if (!(o instanceof IDPDocument)) return false;
 
         IDPDocument that = (IDPDocument) o;
 
-        if (!getFirstName( ).equals(that.getFirstName( ))) return false;
-        if (!getLastName( ).equals(that.getLastName( ))) return false;
-        if (!getMiddleName( ).equals(that.getMiddleName( ))) return false;
-        if (!getDateOfBirth( ).equals(that.getDateOfBirth( ))) return false;
-        if (!getIssuingAuthority( ).equals(that.getIssuingAuthority( ))) return false;
-        if (!getDocIssuer( ).equals(that.getDocIssuer( ))) return false;
-        if (!getDocExpirationDate( ).equals(that.getDocExpirationDate( ))) return false;
-        if (!getDocumentType( ).equals(that.getDocumentType( ))) return false;
-        if (!getDocumentTitle( ).equals(that.getDocumentTitle( ))) return false;
-        return getDocumentNumber( ).equals(that.getDocumentNumber( ));
+        if (!getFirstName().equals(that.getFirstName())) return false;
+        if (!getLastName().equals(that.getLastName())) return false;
+        if (!getMiddleName().equals(that.getMiddleName())) return false;
+        if (!getDateOfBirth().equals(that.getDateOfBirth())) return false;
+        if (!getIssuingAuthority().equals(that.getIssuingAuthority())) return false;
+        if (!getDocIssuer().equals(that.getDocIssuer())) return false;
+        if (!getDocExpirationDate().equals(that.getDocExpirationDate())) return false;
+        if (!getDocumentType().equals(that.getDocumentType())) return false;
+        if (!getDocumentTitle().equals(that.getDocumentTitle())) return false;
+        return getDocumentNumber().equals(that.getDocumentNumber());
 
     }
 
@@ -408,17 +443,17 @@ public class IDPDocument {
      * @return the int
      */
     @Override
-    public int hashCode () {
-        int result = getFirstName( ).hashCode( );
-        result = 31 * result + getLastName( ).hashCode( );
-        result = 31 * result + getMiddleName( ).hashCode( );
-        result = 31 * result + getDateOfBirth( ).hashCode( );
-        result = 31 * result + getIssuingAuthority( ).hashCode( );
-        result = 31 * result + getDocIssuer( ).hashCode( );
-        result = 31 * result + getDocExpirationDate( ).hashCode( );
-        result = 31 * result + getDocumentType( ).hashCode( );
-        result = 31 * result + getDocumentTitle( ).hashCode( );
-        result = 31 * result + getDocumentNumber( ).hashCode( );
+    public int hashCode() {
+        int result = getFirstName().hashCode();
+        result = 31 * result + getLastName().hashCode();
+        result = 31 * result + getMiddleName().hashCode();
+        result = 31 * result + getDateOfBirth().hashCode();
+        result = 31 * result + getIssuingAuthority().hashCode();
+        result = 31 * result + getDocIssuer().hashCode();
+        result = 31 * result + getDocExpirationDate().hashCode();
+        result = 31 * result + getDocumentType().hashCode();
+        result = 31 * result + getDocumentTitle().hashCode();
+        result = 31 * result + getDocumentNumber().hashCode();
         return result;
     }
 }

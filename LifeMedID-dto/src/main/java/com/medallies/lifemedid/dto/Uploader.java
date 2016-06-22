@@ -9,7 +9,7 @@ public class Uploader {
 
     private String transactionId;
 
-    private String personId;
+    private String registerId;
 
     private String organizationId;
 
@@ -22,13 +22,13 @@ public class Uploader {
         this.transactionId = transactionId;
     }
 
-    @XmlElement(name = "personID")
-    public String getPersonId () {
-        return personId;
+    @XmlElement(name = "registerID")
+    public String getRegisterId() {
+        return registerId;
     }
 
-    public void setPersonId (String personId) {
-        this.personId = personId;
+    public void setRegisterId(String registerId) {
+        this.registerId = registerId;
     }
 
     @XmlElement(name = "orgID")
@@ -40,36 +40,12 @@ public class Uploader {
         this.organizationId = organizationId;
     }
 
-    @Override
-    public boolean equals (Object o) {
-        if (this == o) return true;
-        if (!( o instanceof Uploader )) return false;
-
-        Uploader uploader = (Uploader) o;
-
-        if (getTransactionId( ) != null ? !getTransactionId( ).equals(uploader.getTransactionId( )) : uploader
-                .getTransactionId( ) != null)
-            return false;
-        if (getPersonId( ) != null ? !getPersonId( ).equals(uploader.getPersonId( )) : uploader.getPersonId( ) != null)
-            return false;
-        return !( getOrganizationId( ) != null ? !getOrganizationId( ).equals(uploader.getOrganizationId( )) : uploader
-                .getOrganizationId( ) != null );
-
-    }
-
-    @Override
-    public int hashCode () {
-        int result = getTransactionId( ) != null ? getTransactionId( ).hashCode( ) : 0;
-        result = 31 * result + ( getPersonId( ) != null ? getPersonId( ).hashCode( ) : 0 );
-        result = 31 * result + ( getOrganizationId( ) != null ? getOrganizationId( ).hashCode( ) : 0 );
-        return result;
-    }
 
     @Override
     public String toString () {
         return "Uploader{" +
                 "transactionId='" + transactionId + '\'' +
-                ", personId='" + personId + '\'' +
+                ", registerId='" + registerId + '\'' +
                 ", organizationId='" + organizationId + '\'' +
                 '}';
     }

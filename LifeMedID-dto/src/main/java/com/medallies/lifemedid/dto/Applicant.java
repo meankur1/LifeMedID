@@ -24,6 +24,7 @@ public class Applicant {
      */
     private String lastName;
 
+    private String gender;
     private String levelOfAssurance;
 
     /**
@@ -37,11 +38,11 @@ public class Applicant {
     private String id;
 
     @XmlElement(name = "suffix")
-    public String getSuffix () {
+    public String getSuffix() {
         return suffix;
     }
 
-    public void setSuffix (String suffix) {
+    public void setSuffix(String suffix) {
         this.suffix = suffix;
     }
 
@@ -51,7 +52,7 @@ public class Applicant {
      * @return the first name
      */
     @XmlElement(name = "firstName")
-    public String getFirstName () {
+    public String getFirstName() {
         return firstName;
     }
 
@@ -60,15 +61,15 @@ public class Applicant {
      *
      * @param firstName the first name
      */
-    public void setFirstName (String firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public String getMiddleName () {
+    public String getMiddleName() {
         return middleName;
     }
 
-    public void setMiddleName (String middleName) {
+    public void setMiddleName(String middleName) {
         this.middleName = middleName;
     }
 
@@ -78,8 +79,17 @@ public class Applicant {
      * @return the last name
      */
     @XmlElement(name = "lastName")
-    public String getLastName () {
+    public String getLastName() {
         return lastName;
+    }
+
+    @XmlElement(name = "gender")
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     /**
@@ -87,16 +97,16 @@ public class Applicant {
      *
      * @param lastName the last name
      */
-    public void setLastName (String lastName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
     @XmlElement(name = "levelOfAssurance")
-    public String getLevelOfAssurance () {
+    public String getLevelOfAssurance() {
         return levelOfAssurance;
     }
 
-    public void setLevelOfAssurance (String levelOfAssurance) {
+    public void setLevelOfAssurance(String levelOfAssurance) {
         this.levelOfAssurance = levelOfAssurance;
     }
 
@@ -106,7 +116,7 @@ public class Applicant {
      * @return the date of birth
      */
     @XmlElement(name = "dateOfBirth")
-    public String getDateOfBirth () {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
@@ -115,7 +125,7 @@ public class Applicant {
      *
      * @param dateOfBirth the date of birth
      */
-    public void setDateOfBirth (String dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -125,7 +135,7 @@ public class Applicant {
      * @return the id
      */
     @XmlElement(name = "id")
-    public String getId () {
+    public String getId() {
         return id;
     }
 
@@ -134,36 +144,36 @@ public class Applicant {
      *
      * @param id the id
      */
-    public void setId (String id) {
+    public void setId(String id) {
         this.id = id;
     }
 
     @Override
-    public boolean equals (Object o) {
+    public boolean equals(Object o) {
         if (this == o) return true;
-        if (!( o instanceof Applicant )) return false;
+        if (!(o instanceof Applicant)) return false;
 
         Applicant applicant = (Applicant) o;
 
-        if (getFirstName( ) != null ? !getFirstName( ).equals(applicant.getFirstName( )) : applicant.getFirstName( )
+        if (getFirstName() != null ? !getFirstName().equals(applicant.getFirstName()) : applicant.getFirstName()
                 != null)
             return false;
-        if (getLastName( ) != null ? !getLastName( ).equals(applicant.getLastName( )) : applicant.getLastName( ) !=
+        if (getLastName() != null ? !getLastName().equals(applicant.getLastName()) : applicant.getLastName() !=
                 null)
             return false;
-        if (getDateOfBirth( ) != null ? !getDateOfBirth( ).equals(applicant.getDateOfBirth( )) : applicant
-                .getDateOfBirth( ) != null)
+        if (getDateOfBirth() != null ? !getDateOfBirth().equals(applicant.getDateOfBirth()) : applicant
+                .getDateOfBirth() != null)
             return false;
-        return !( getId( ) != null ? !getId( ).equals(applicant.getId( )) : applicant.getId( ) != null );
+        return !(getId() != null ? !getId().equals(applicant.getId()) : applicant.getId() != null);
 
     }
 
     @Override
-    public int hashCode () {
-        int result = getFirstName( ) != null ? getFirstName( ).hashCode( ) : 0;
-        result = 31 * result + ( getLastName( ) != null ? getLastName( ).hashCode( ) : 0 );
-        result = 31 * result + ( getDateOfBirth( ) != null ? getDateOfBirth( ).hashCode( ) : 0 );
-        result = 31 * result + ( getId( ) != null ? getId( ).hashCode( ) : 0 );
+    public int hashCode() {
+        int result = getFirstName() != null ? getFirstName().hashCode() : 0;
+        result = 31 * result + (getLastName() != null ? getLastName().hashCode() : 0);
+        result = 31 * result + (getDateOfBirth() != null ? getDateOfBirth().hashCode() : 0);
+        result = 31 * result + (getId() != null ? getId().hashCode() : 0);
         return result;
     }
 
@@ -173,7 +183,7 @@ public class Applicant {
      * @return the string
      */
     @Override
-    public String toString () {
+    public String toString() {
         return "Applicant{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +

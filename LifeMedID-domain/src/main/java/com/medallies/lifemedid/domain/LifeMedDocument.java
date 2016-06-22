@@ -2,7 +2,7 @@ package com.medallies.lifemedid.domain;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Objects;
+import java.util.List;
 
 
 /**
@@ -16,7 +16,7 @@ public class LifeMedDocument {
      * The Lifemed id.
      */
     @Id
-    @Column(name = "lifemed_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long lifemedId;
 
@@ -35,8 +35,8 @@ public class LifeMedDocument {
     /**
      * The Person id.
      */
-    @Column(name = "person_id")
-    private String personId;
+    @Column(name = "registar_id")
+    private String registerId;
 
     /**
      * The Time stamp.
@@ -53,8 +53,14 @@ public class LifeMedDocument {
     /**
      * The Applicant.
      */
-    @OneToOne(mappedBy = "lifeMedDocument", cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "applicant_id", referencedColumnName = "id")
     private Applicant applicant;
+
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(name = "transaction_docs",joinColumns = {@JoinColumn(name = "transaction_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "idpdoc_id", referencedColumnName = "id")})
+    private List<IDPDocument> idpDocumentList;
 
     /**
      * Gets lifemed id.
@@ -115,8 +121,8 @@ public class LifeMedDocument {
      *
      * @return the person id
      */
-    public String getPersonId () {
-        return personId;
+    public String getRegisterId() {
+        return registerId;
     }
 
     /**
@@ -124,8 +130,8 @@ public class LifeMedDocument {
      *
      * @param personId the person id
      */
-    public void setPersonId (String personId) {
-        this.personId = personId;
+    public void setRegisterId(String personId) {
+        this.registerId = personId;
     }
 
     /**
@@ -182,6 +188,13 @@ public class LifeMedDocument {
         this.applicant = applicant;
     }
 
+    public List<IDPDocument> getIdpDocumentList() {
+        return idpDocumentList;
+    }
+
+    public void setIdpDocumentList(List<IDPDocument> idpDocumentList) {
+        this.idpDocumentList = idpDocumentList;
+    }
 
     /**
      * Equals boolean.
@@ -200,7 +213,7 @@ public class LifeMedDocument {
             return false;
         if (!getTransactionId( ).equals(that.getTransactionId( ))) return false;
         if (!getOrganizationId( ).equals(that.getOrganizationId( ))) return false;
-        if (!getPersonId( ).equals(that.getPersonId( ))) return false;
+        if (!getRegisterId().equals(that.getRegisterId())) return false;
         return !( getTimeStamp( ) != null ? !getTimeStamp( ).equals(that.getTimeStamp( )) : that.getTimeStamp( ) !=
                 null );
 
@@ -216,7 +229,7 @@ public class LifeMedDocument {
         int result = getLifemedId( ) != null ? getLifemedId( ).hashCode( ) : 0;
         result = 31 * result + getTransactionId( ).hashCode( );
         result = 31 * result + getOrganizationId( ).hashCode( );
-        result = 31 * result + getPersonId( ).hashCode( );
+        result = 31 * result + getRegisterId().hashCode( );
         result = 31 * result + ( getTimeStamp( ) != null ? getTimeStamp( ).hashCode( ) : 0 );
         return result;
     }

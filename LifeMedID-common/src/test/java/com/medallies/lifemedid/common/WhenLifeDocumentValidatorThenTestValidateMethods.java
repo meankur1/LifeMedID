@@ -70,7 +70,7 @@ public class WhenLifeDocumentValidatorThenTestValidateMethods {
         Uploader uploader = new Uploader();
 
         uploader.setTransactionId("TransactionTest1");
-        uploader.setPersonId("PersonTest1");
+        uploader.setRegisterId("PersonTest1");
         uploader.setOrganizationId("OrgTest1");
 
 

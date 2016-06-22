@@ -18,34 +18,25 @@ public class IDPDocument {
     private String firstName;
 
     /**
-     * The Last name.
-     */
-    private String lastName;
-
-    /**
      * The Middle name.
      */
     private String middleName;
+
+    /**
+     * The Last name.
+     */
+    private String lastName;
 
     /**
      * The Date of birth.
      */
     private String dateOfBirth;
 
+    private String gender;
     /**
      * The Issuing authority.
      */
     private String issuingAuthority;
-
-    /**
-     * The Issuing state.
-     */
-    private String docIssuer;
-
-    /**
-     * The License expiration date.
-     */
-    private String docExpirationDate;
 
     /**
      * The Document type.
@@ -58,10 +49,21 @@ public class IDPDocument {
     private String documentTitle;
 
     /**
+     * The Issuing state.
+     */
+    private String docIssuer;
+
+    /**
      * The Document number.
      */
-    private String documentNumber;
+    private String documentId;
 
+    private String docIssuanceDate;
+
+    /**
+     * The License expiration date.
+     */
+    private String docExpirationDate;
 
     @XmlElement(name = "suffix")
     public String getSuffix () {
@@ -248,87 +250,54 @@ public class IDPDocument {
      *
      * @return the document number
      */
-    @XmlElement(name = "docNumber")
-    public String getDocumentNumber () {
-        return documentNumber;
+    @XmlElement(name = "docId")
+    public String getDocumentId() {
+        return documentId;
     }
 
     /**
      * Sets document nuber.
      *
-     * @param documentNumber the document nuber
+     * @param documentId the document nuber
      */
-    public void setDocumentNumber (String documentNumber) {
-        this.documentNumber = documentNumber;
+    public void setDocumentId(String documentId) {
+        this.documentId = documentId;
     }
 
+    @XmlElement(name = "gender")
+    public String getGender() {
+        return gender;
+    }
 
-    @Override
-    public boolean equals (Object o) {
-        if (this == o) return true;
-        if (!( o instanceof IDPDocument )) return false;
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
-        IDPDocument that = (IDPDocument) o;
+    @XmlElement(name = "docIssuanceDate")
+    public String getDocIssuanceDate() {
+        return docIssuanceDate;
+    }
 
-        if (getFirstName( ) != null ? !getFirstName( ).equals(that.getFirstName( )) : that.getFirstName( ) != null)
-            return false;
-        if (getLastName( ) != null ? !getLastName( ).equals(that.getLastName( )) : that.getLastName( ) != null)
-            return false;
-        if (getMiddleName( ) != null ? !getMiddleName( ).equals(that.getMiddleName( )) : that.getMiddleName( ) != null)
-            return false;
-        if (getDateOfBirth( ) != null ? !getDateOfBirth( ).equals(that.getDateOfBirth( )) : that.getDateOfBirth( ) !=
-                null)
-            return false;
-        if (getIssuingAuthority( ) != null ? !getIssuingAuthority( ).equals(that.getIssuingAuthority( )) : that
-                .getIssuingAuthority( ) != null)
-            return false;
-        if (getDocIssuer( ) != null ? !getDocIssuer( ).equals(that.getDocIssuer( )) : that.getDocIssuer( ) != null)
-            return false;
-        if (getDocExpirationDate( ) != null ? !getDocExpirationDate( ).equals(that.getDocExpirationDate( )) : that
-                .getDocExpirationDate( ) != null)
-            return false;
-        if (getDocumentType( ) != null ? !getDocumentType( ).equals(that.getDocumentType( )) : that.getDocumentType(
-
-        ) != null)
-            return false;
-        if (getDocumentTitle( ) != null ? !getDocumentTitle( ).equals(that.getDocumentTitle( )) : that
-                .getDocumentTitle( ) != null)
-            return false;
-        return !( getDocumentNumber( ) != null ? !getDocumentNumber( ).equals(that.getDocumentNumber( )) : that
-                .getDocumentNumber( ) != null );
-
+    public void setDocIssuanceDate(String docIssuanceDate) {
+        this.docIssuanceDate = docIssuanceDate;
     }
 
     @Override
-    public int hashCode () {
-        int result = getFirstName( ) != null ? getFirstName( ).hashCode( ) : 0;
-        result = 31 * result + ( getLastName( ) != null ? getLastName( ).hashCode( ) : 0 );
-        result = 31 * result + ( getMiddleName( ) != null ? getMiddleName( ).hashCode( ) : 0 );
-        result = 31 * result + ( getDateOfBirth( ) != null ? getDateOfBirth( ).hashCode( ) : 0 );
-        result = 31 * result + ( getIssuingAuthority( ) != null ? getIssuingAuthority( ).hashCode( ) : 0 );
-        result = 31 * result + ( getDocIssuer( ) != null ? getDocIssuer( ).hashCode( ) : 0 );
-        result = 31 * result + ( getDocExpirationDate( ) != null ? getDocExpirationDate( ).hashCode( ) : 0 );
-        result = 31 * result + ( getDocumentType( ) != null ? getDocumentType( ).hashCode( ) : 0 );
-        result = 31 * result + ( getDocumentTitle( ) != null ? getDocumentTitle( ).hashCode( ) : 0 );
-        result = 31 * result + ( getDocumentNumber( ) != null ? getDocumentNumber( ).hashCode( ) : 0 );
-        return result;
-    }
-
-    /**
-     * To string string.
-     *
-     * @return the string
-     */
-    @Override
-    public String toString () {
+    public String toString() {
         return "IDPDocument{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                "suffix='" + suffix + '\'' +
+                ", firstName='" + firstName + '\'' +
                 ", middleName='" + middleName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", dateOfBirth='" + dateOfBirth + '\'' +
-                ", docIssuer='" + docIssuer + '\'' +
-                ", docExpirationDate='" + docExpirationDate + '\'' +
+                ", gender='" + gender + '\'' +
+                ", issuingAuthority='" + issuingAuthority + '\'' +
                 ", documentType='" + documentType + '\'' +
+                ", documentTitle='" + documentTitle + '\'' +
+                ", docIssuer='" + docIssuer + '\'' +
+                ", documentId='" + documentId + '\'' +
+                ", docIssuanceDate='" + docIssuanceDate + '\'' +
+                ", docExpirationDate='" + docExpirationDate + '\'' +
                 '}';
     }
 }

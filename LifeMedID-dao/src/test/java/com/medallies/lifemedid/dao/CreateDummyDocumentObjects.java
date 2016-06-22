@@ -31,7 +31,7 @@ public class CreateDummyDocumentObjects {
         LifeMedDocument lifeMedDocumentDomain = new LifeMedDocument( );
 
         lifeMedDocumentDomain.setTransactionId("transaction-test-1");
-        lifeMedDocumentDomain.setPersonId("person-test-1");
+        lifeMedDocumentDomain.setRegisterId("person-test-1");
         lifeMedDocumentDomain.setOrganizationId("org-test-1");
         lifeMedDocumentDomain.setTimeStamp(new Date());
 

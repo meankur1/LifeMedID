@@ -26,7 +26,7 @@ public class CreateDummyDocumentObjects {
         Uploader uploaderDTO = new Uploader();
 
         uploaderDTO.setTransactionId("transaction-test-2");
-        uploaderDTO.setPersonId("person-test-2");
+        uploaderDTO.setRegisterId("person-test-2");
         uploaderDTO.setOrganizationId("org-test-2");
 
         Applicant applicantDTO = new Applicant( );
@@ -39,7 +39,7 @@ public class CreateDummyDocumentObjects {
         IDPDocument idpDocumentDTO = new IDPDocument( );
 
         idpDocumentDTO.setDocumentType("A1");
-        idpDocumentDTO.setDocumentNumber("PP-123-431-9622");
+        idpDocumentDTO.setDocumentId("PP-123-431-9622");
         idpDocumentDTO.setDocumentTitle("Passport");
 
         idpDocumentDTO.setFirstName("firstName12");

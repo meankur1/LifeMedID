@@ -54,7 +54,7 @@ public class LifeMedDocDomainDTOConverter {
 
         //Note changes according to new structure
         uploaderDTO.setTransactionId(lifeMedDocumentDomain.getTransactionId( ));
-        uploaderDTO.setPersonId(lifeMedDocumentDomain.getPersonId( ));
+        uploaderDTO.setRegisterId(lifeMedDocumentDomain.getRegisterId());
         uploaderDTO.setOrganizationId(lifeMedDocumentDomain.getOrganizationId( ));
 
         try {
@@ -143,8 +143,8 @@ public class LifeMedDocDomainDTOConverter {
             stringBuilder.append(" Uploader TransactionId,");
         }
 
-        if (!StringUtils.isEmpty(uploaderDTO.getPersonId( ))) {
-            lifeMedDocumentDomain.setPersonId(uploaderDTO.getPersonId( ));
+        if (!StringUtils.isEmpty(uploaderDTO.getRegisterId())) {
+            lifeMedDocumentDomain.setRegisterId(uploaderDTO.getRegisterId());
         } else {
             flag = true;
             stringBuilder.append(" Uploader PersonId,");

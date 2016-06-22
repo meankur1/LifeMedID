@@ -48,19 +48,23 @@ public class IDPDocumentDomainDTOConverter {
             logger.warn(" Creating iDPDocumentDTO, received null object");
         }
 
-        iDPDocumentDTO.setFirstName(iDPDocumentDomain.getFirstName( ));
-        iDPDocumentDTO.setLastName(iDPDocumentDomain.getLastName( ));
-        iDPDocumentDTO.setMiddleName(iDPDocumentDomain.getMiddleName( ));
-        iDPDocumentDTO.setDateOfBirth(iDPDocumentDomain.getDateOfBirth( ));
+        iDPDocumentDTO.setFirstName(iDPDocumentDomain.getFirstName());
+        iDPDocumentDTO.setLastName(iDPDocumentDomain.getLastName());
+        iDPDocumentDTO.setMiddleName(iDPDocumentDomain.getMiddleName());
+        iDPDocumentDTO.setDateOfBirth(iDPDocumentDomain.getDateOfBirth());
+        iDPDocumentDTO.setGender(iDPDocumentDomain.getGender());
 
-        iDPDocumentDTO.setDocIssuer(iDPDocumentDomain.getDocIssuer( ));
-        iDPDocumentDTO.setIssuingAuthority(iDPDocumentDomain.getIssuingAuthority( ));
+        iDPDocumentDTO.setDocIssuer(iDPDocumentDomain.getDocIssuer());
+        iDPDocumentDTO.setIssuingAuthority(iDPDocumentDomain.getIssuingAuthority());
 
-        iDPDocumentDTO.setDocExpirationDate(iDPDocumentDomain.getDocExpirationDate( ));
+        iDPDocumentDTO.setDocExpirationDate(iDPDocumentDomain.getDocExpirationDate());
+        iDPDocumentDTO.setDocIssuanceDate(iDPDocumentDomain.getDocIssuanceDate());
 
         iDPDocumentDTO.setDocumentType(iDPDocumentDomain.getDocumentType( ));
         iDPDocumentDTO.setDocumentTitle(iDPDocumentDomain.getDocumentTitle( ));
-        iDPDocumentDTO.setDocumentNumber(iDPDocumentDomain.getDocumentNumber( ));
+        iDPDocumentDTO.setDocumentId(iDPDocumentDomain.getDocumentNumber());
+
+
 
         return iDPDocumentDTO;
     }
@@ -116,53 +120,67 @@ public class IDPDocumentDomainDTOConverter {
             stringBuilder.append(" IDPDocument First Name,");
         }
 
-        if (!StringUtils.isEmpty(iDPDocumentDTO.getLastName( ))) {
-            iDPDocumentDomain.setLastName(iDPDocumentDTO.getLastName( ));
+        if (!StringUtils.isEmpty(iDPDocumentDTO.getLastName())) {
+            iDPDocumentDomain.setLastName(iDPDocumentDTO.getLastName());
         } else {
             flag = true;
             stringBuilder.append(" IDPDocument Last Name,");
         }
 
-        if (!StringUtils.isEmpty(iDPDocumentDTO.getDocumentType( ))) {
-            iDPDocumentDomain.setDocumentType(iDPDocumentDTO.getDocumentType( ));
+        if (!StringUtils.isEmpty(iDPDocumentDTO.getDocumentType())) {
+            iDPDocumentDomain.setDocumentType(iDPDocumentDTO.getDocumentType());
         } else {
             flag = true;
             stringBuilder.append(" IDPDocument DocumentType,");
         }
 
-        if (!StringUtils.isEmpty(iDPDocumentDTO.getDocumentTitle( ))) {
-            iDPDocumentDomain.setDocumentTitle(iDPDocumentDTO.getDocumentTitle( ));
+        if (!StringUtils.isEmpty(iDPDocumentDTO.getDocumentTitle())) {
+            iDPDocumentDomain.setDocumentTitle(iDPDocumentDTO.getDocumentTitle());
         } else {
             flag = true;
             stringBuilder.append(" IDPDocument DocumentTitle,");
         }
 
-        if (!StringUtils.isEmpty(iDPDocumentDTO.getDocumentNumber( ))) {
-            iDPDocumentDomain.setDocumentNumber(iDPDocumentDTO.getDocumentNumber( ));
+        if (!StringUtils.isEmpty(iDPDocumentDTO.getDocumentId())) {
+            iDPDocumentDomain.setDocumentNumber(iDPDocumentDTO.getDocumentId());
         } else {
             flag = true;
-            stringBuilder.append(" IDPDocument DocumentNumber,");
+            stringBuilder.append(" IDPDocument DocumentId,");
         }
 
-        if (!StringUtils.isEmpty(iDPDocumentDTO.getDateOfBirth( ))) {
-            iDPDocumentDomain.setDateOfBirth(iDPDocumentDTO.getDateOfBirth( ));
+        if (!StringUtils.isEmpty(iDPDocumentDTO.getDateOfBirth())) {
+            iDPDocumentDomain.setDateOfBirth(iDPDocumentDTO.getDateOfBirth());
         } else {
             flag = true;
             stringBuilder.append(" IDPDocument Date of Birth,");
         }
 
-        if (!StringUtils.isEmpty(iDPDocumentDTO.getDocIssuer( ))) {
-            iDPDocumentDomain.setDocIssuer(iDPDocumentDTO.getDocIssuer( ));
+        if (!StringUtils.isEmpty(iDPDocumentDTO.getGender())) {
+            iDPDocumentDomain.setGender(iDPDocumentDTO.getGender());
+        } else {
+            flag = true;
+            stringBuilder.append(" IDPDocument Gender,");
+        }
+
+        if (!StringUtils.isEmpty(iDPDocumentDTO.getDocIssuer())) {
+            iDPDocumentDomain.setDocIssuer(iDPDocumentDTO.getDocIssuer());
         } else {
             flag = true;
             stringBuilder.append(" IDPDocument Document Issuer,");
         }
 
-        if (!StringUtils.isEmpty(iDPDocumentDTO.getIssuingAuthority( ))) {
-            iDPDocumentDomain.setIssuingAuthority(iDPDocumentDTO.getIssuingAuthority( ));
+        if (!StringUtils.isEmpty(iDPDocumentDTO.getIssuingAuthority())) {
+            iDPDocumentDomain.setIssuingAuthority(iDPDocumentDTO.getIssuingAuthority());
         } else {
             flag = true;
             stringBuilder.append(" IDPDocument Issuing Authority,");
+        }
+
+        if (!StringUtils.isEmpty(iDPDocumentDTO.getDocIssuanceDate())) {
+            iDPDocumentDomain.setDocIssuanceDate(iDPDocumentDTO.getDocIssuanceDate());
+        } else {
+            flag = true;
+            stringBuilder.append(" IDPDocument Document Issuance Date,");
         }
 
         if (!StringUtils.isEmpty(iDPDocumentDTO.getDocExpirationDate( ))) {

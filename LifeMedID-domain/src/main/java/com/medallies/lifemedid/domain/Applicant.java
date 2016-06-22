@@ -12,16 +12,9 @@ import java.util.List;
 public class Applicant {
 
     /**
-     * The Applicant id.
-     */
-    @Id
-    @Column(name = "applicant_id")
-    @GeneratedValue(strategy = GenerationType.TABLE)
-    private long applicantId;
-
-    /**
      * The Id.
      */
+    @Id
     @Column(name = "id")
     private String id;
 
@@ -52,6 +45,9 @@ public class Applicant {
     @Column(name = "level_of_assurance")
     private String levelOfAssurance;
 
+    @Column(name = "gender")
+    private String gender;
+
     /**
      * The Date of birth.
      */
@@ -75,8 +71,7 @@ public class Applicant {
     /**
      * The Life med document.
      */
-    @OneToOne(cascade = { CascadeType.REFRESH, CascadeType.PERSIST })
-    @JoinColumn(name = "lifemed_id", referencedColumnName = "lifemed_id")
+    @OneToOne(mappedBy = "applicant", cascade = { CascadeType.REFRESH, CascadeType.PERSIST })
     private LifeMedDocument lifeMedDocument;
 
     /**
@@ -84,27 +79,6 @@ public class Applicant {
      */
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "applicant")
     private List<IDPDocument> idpDocuments;
-
-//    @OneToOne
-//    private LifeMedId lifeMedId;
-
-    /**
-     * Gets applicant id.
-     *
-     * @return the applicant id
-     */
-    public long getApplicantId () {
-        return applicantId;
-    }
-
-    /**
-     * Sets applicant id.
-     *
-     * @param applicantId the applicant id
-     */
-    public void setApplicantId (long applicantId) {
-        this.applicantId = applicantId;
-    }
 
     /**
      * Gets id.
@@ -220,6 +194,14 @@ public class Applicant {
      */
     public void setDateOfBirth (String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     /**
