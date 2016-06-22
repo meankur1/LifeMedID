@@ -40,8 +40,7 @@ var ajax = {
                     middleName: "J",
                     docType: 'A1',
                     docTitle: 'Passport',
-                    docNumber: 'PP-465-67-6546'
-
+                    docId: 'PP-465-67-6546'
                 }],
                 applicant: {
                     suffix: "Mr",
